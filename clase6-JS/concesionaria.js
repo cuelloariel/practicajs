@@ -38,9 +38,6 @@ const listStock = (autos) => {
 
 listStock(autosDisponibles)
 
-
-
-
 /*
 Ejercicio 2:
 Un día entro Genaro a comprar un auto, y le solicito a Jorge que le muestre que autos tiene disponibles que sean de 4 o menos puertas
