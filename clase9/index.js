@@ -5,6 +5,9 @@ const div = document.querySelector(".div");
 
 const apellido = document.querySelector('#apellido')
 
+const mail = document.querySelector('#email');
+
+
 
 const labelName = document.querySelector(".labelName")
 submit.setAttribute("disabled", true);
@@ -117,10 +120,6 @@ div.addEventListener("click", () => {
 
 
 
-
-
-
-
 form.addEventListener("submit", (event, values) => {
     event.preventDefault()
     console.log(apellido.value).trim()
@@ -129,4 +128,46 @@ form.addEventListener("submit", (event, values) => {
 
 div.addEventListener("click", () => {
     console.log("value del campo apellido >> ", apellido.value)
+})
+
+
+/**
+ * Validar que el mail tenga 3 caracteres minimo*
+ * Validar que el mail tenga el simbolo @ no al principio y . *
+ */
+
+ const arraySymbolsEmail = ["@", "."]
+
+ const validateSimbolInEmail = (string) => {
+    let myFlagArroba = false
+    const newString = string.split("")
+    newString.forEach(element => {
+        arraySymbolsEmail.forEach(anotherElement => {
+            if (element === anotherElement && element.index !== 0) {}return myFlagArroba = true
+        })
+    })
+    return myFlagArroba
+}
+
+
+ mail.addEventListener("input", (event) => {
+    const value = event.target.value
+
+    if (value.length >= 2 && !doesStringHasNumber(value) && validateSimbolInEmail(value) && value.length <= 15) {
+        hideError(mail)
+        labelMail.innerHTML = ""
+    } else {
+        labelMail.innerHTML = '<i style="color:red, textAlign:left"></i>'
+        showError(mail)
+        if (value.length < 2) {
+            labelMail.innerHTML = '<i style="color:red, textAlign:left">Ingresa más de 2 caracteres</i>'
+        } else if (doesStringHasNumber(value)) {
+            labelMail.innerHTML = '<i style="color:red, textAlign:left">Elimina los numeros</i>'
+
+        } else if (stringWithOddSymbols(value)) {
+            labelMail.innerHTML = '<i style="color:red, textAlign:left">Elimina los caracteres especiales</i>'
+        } else if (value.length <= 15) {
+            labelMail.innerHTML = '<i style="color:red, textAlign:left">Por favor escribe menos de 15 caracteres</i>'
+        }
+    }
 })
