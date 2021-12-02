@@ -148,8 +148,6 @@ div.addEventListener("click", () => {
     })
     return myFlagArroba
 }
-
-
  mail.addEventListener("input", (event) => {
     const value = event.target.value
 
